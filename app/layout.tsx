@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
+import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -27,6 +28,13 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
+
+
+        <div className="bg-black text-white flex  py-4">
+        <div className="grow flex justify-center">Summer Stale for All swim ANd Free Express Delivery-OFF 50%  <span className="underline ms-3"> Shop now</span></div>
+        { <div className="grow-0 flex justify-start me-20">English <KeyboardArrowDownIcon /></div> }
+        </div>
+        
         {children}
       </body>
     </html>
