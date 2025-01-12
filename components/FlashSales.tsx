@@ -1,6 +1,6 @@
 "use client";
 import CategoryTitle from "./CategoryTitle";
-import { Card, CardContent } from "@/components/ui/card";
+import { Card, CardContent, CardFooter } from "@/components/ui/card";
 import {
     Carousel,
     CarouselContent,
@@ -9,6 +9,8 @@ import {
     CarouselPrevious,
 } from "@/components/ui/carousel";
 import { useEffect, useState } from "react";
+import { FaHeart } from "react-icons/fa";
+import StarRating from "./RatingStars";
 
 function FlashSales() {
     const [timeLeft, setTimeLeft] = useState({
@@ -44,6 +46,14 @@ function FlashSales() {
         return () => clearInterval(timer); // Cleanup on component unmount
     }, []);
 
+    const [isHeartClicked, setIsHeartClicked] = useState(false);
+
+    const toggleHeartColor = () => {
+        setIsHeartClicked(!isHeartClicked);
+    };
+
+    function handleAddToCart(index: number): void {}
+
     return (
         <div>
             <CategoryTitle title="Today's" />
@@ -76,18 +86,63 @@ function FlashSales() {
                             className="pl-1 md:basis-1/6 lg:basis-1/8" // Adjusted width here
                         >
                             <div className="p-1">
-                                <Card>
-                                    <div className="flex justify-end items-start">
-                                        <div></div>
-                                        <div></div>
+                                <Card className="relative group">
+                                    {/* Background Image */}
+                                    <div
+                                        className="w-full h-full aspect-square bg-cover bg-center"
+                                        style={{
+                                            backgroundImage: `url(https://picsum.photos/300?random=${
+                                                index + 1
+                                            })`,
+                                        }}
+                                    >
+                                        {/* Discount Tag */}
+                                        <div className="absolute top-2 left-2 bg-red-500 text-white text-xs px-2 py-1 rounded">
+                                            40%
+                                        </div>
+
+                                        {/* Heart Icon */}
+                                        <div
+                                            className="absolute top-2 right-2 cursor-pointer"
+                                            onClick={toggleHeartColor}
+                                        >
+                                            <FaHeart
+                                                size={16}
+                                                color={
+                                                    isHeartClicked
+                                                        ? "black"
+                                                        : "red"
+                                                }
+                                                className="transition-colors duration-300 hover:opacity-80"
+                                            />
+                                        </div>
                                     </div>
 
-                                    <CardContent className="flex aspect-square items-center justify-center p-6">
-                                        <span className="text-2xl font-semibold">
-                                            {index + 1}
-                                        </span>
-                                    </CardContent>
+                                    {/* Add to Cart Hover Effect */}
+                                    <div
+                                        className="absolute bottom-0 left-0 right-0 bg-black text-white text-center py-2 opacity-0 group-hover:opacity-100 group-hover:translate-y-0 transform translate-y-full transition-all duration-300 cursor-pointer"
+                                        onClick={() => handleAddToCart(index)}
+                                    >
+                                        Add to Cart
+                                    </div>
                                 </Card>
+                                <div>
+                                    <p className="text-sm my-2 font-semibold">
+                                        AK-900 Wired KeyBoard
+                                    </p>
+                                    <p className="text-sm text-red-500">
+                                        $120{" "}
+                                        <span className="line-through text-gray-700">
+                                            $160
+                                        </span>
+                                    </p>
+                                    <div>
+                                        <StarRating rating={4} />
+                                        <span className="text-sm text-gray-500">
+                                            (4.3 rating, 88 reviews)
+                                        </span>
+                                    </div>
+                                </div>
                             </div>
                         </CarouselItem>
                     ))}
