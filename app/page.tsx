@@ -1,3 +1,4 @@
+import BrowseCategory from "@/components/BrowseCategory";
 import FlashSales from "@/components/FlashSales";
 import HeroBanner from "@/components/HeroBanner";
 import ItemCategory from "@/components/ItemCategory";
@@ -11,6 +12,7 @@ export default function Home() {
                 <HeroBanner />
             </div>
             <FlashSales />
+            <BrowseCategory />
         </div>
     );
 }
