@@ -10,7 +10,7 @@ function NavBar() {
                     <div className="font-bold font-black text-2xl">
                         Exclusive
                     </div>
-                    <div className="flex gap-8 mt-2">
+                    <div className="flex gap-8 mt-2 text-xl">
                         <div>Home</div>
                         <div>Contact</div>
                         <div>About</div>
@@ -19,11 +19,11 @@ function NavBar() {
                 </div>
                 <div className="flex gap-6">
                     <div className="flex items-center gap-2">
-                        <div className="relative w-50">
+                        <div className="relative w-70">
                             <Input
                                 type="text"
                                 placeholder="What are you looking for ?"
-                                className="pl-12 pr-4"
+                                className="pl-12 pr-4 text-lg"
                             />
                             <svg
                                 xmlns="http://www.w3.org/2000/svg"
