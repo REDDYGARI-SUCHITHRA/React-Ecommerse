@@ -41,10 +41,12 @@ export default function RootLayout({
                         </div>
                     }
                 </div>
+                <div className="w-[80vw] mx-auto ">
                 <NavBar />
 
                 <hr className="mt-4" />
                 {children}
+                </div>
             </body>
         </html>
     );
