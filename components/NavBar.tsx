@@ -1,54 +1,74 @@
-import { Input } from "@/components/ui/input";
+"use client";
+import { useState } from "react";
 import { IoIosSearch } from "react-icons/io";
 import { FaRegHeart } from "react-icons/fa";
 import { MdOutlineShoppingCart } from "react-icons/md";
-function NavBar() {
-    return (
-        <div className="w-[80vw] mx-auto ">
-            <div className="flex mt-10 justify-between">
-                <div className="flex justify-between w-[35vw]">
-                    <div className="font-bold font-black text-2xl">
-                        Exclusive
-                    </div>
-                    <div className="flex gap-8 mt-2">
-                        <div>Home</div>
-                        <div>Contact</div>
-                        <div>About</div>
-                        <div>Signup</div>
-                    </div>
-                </div>
-                <div className="flex gap-6">
-                    <div className="flex items-center gap-2">
-                        <div className="relative w-50">
-                            <Input
-                                type="text"
-                                placeholder="What are you looking for ?"
-                                className="pl-12 pr-4"
-                            />
-                            <svg
-                                xmlns="http://www.w3.org/2000/svg"
-                                className="absolute top-0 bottom-0 w-6 h-6 my-auto text-gray-500 left-3"
-                                fill="none"
-                                viewBox="0 0 24 24"
-                                stroke="currentColor"
-                            >
-                                <path
-                                    strokeLinecap="round"
-                                    strokeLinejoin="round"
-                                    strokeWidth={2}
-                                    d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
-                                />
-                            </svg>
-                        </div>
-                    </div>
+import { AiOutlineMenu, AiOutlineClose } from "react-icons/ai";
 
-                    <div className="flex items-center ">
-                        <FaRegHeart size={25} />
-                    </div>
-                    <div className="flex items-center ">
-                        <MdOutlineShoppingCart size={25} />
+function NavBar() {
+    const [menuOpen, setMenuOpen] = useState(false);
+
+    const toggleMenu = () => {
+        setMenuOpen((prev) => !prev);
+    };
+
+    return (
+        <div className="w-[90vw] max-w-7xl mx-auto">
+            {/* Top Row */}
+            <div className="flex items-center justify-between py-4">
+                {/* Logo and Menu Button */}
+                <div className="flex items-center w-2/3">
+                    <div className="font-black text-2xl">Exclusive</div>
+                    <div className="md:hidden ml-4">
+                        <button
+                            onClick={toggleMenu}
+                            className="text-gray-600 focus:outline-none"
+                        >
+                            {menuOpen ? (
+                                <AiOutlineClose size={24} />
+                            ) : (
+                                <AiOutlineMenu size={24} />
+                            )}
+                        </button>
                     </div>
                 </div>
+
+                {/* Search and Icons */}
+                <div className="flex items-center gap-4 w-1/3 justify-end">
+                    {/* Search */}
+                    <div className="relative hidden md:block">
+                        <input
+                            type="text"
+                            placeholder="Search..."
+                            className="pl-10 pr-4 py-2 w-full max-w-[200px] border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                        />
+                        <IoIosSearch
+                            size={18}
+                            className="absolute top-1/2 left-3 text-gray-500 transform -translate-y-1/2"
+                        />
+                    </div>
+                    {/* Heart and Cart */}
+                    <div className="flex gap-3">
+                        <FaRegHeart size={20} className="text-gray-600" />
+                        <MdOutlineShoppingCart
+                            size={20}
+                            className="text-gray-600"
+                        />
+                    </div>
+                </div>
+            </div>
+
+            {/* Collapsible Menu */}
+            <div
+                className={`flex flex-col md:flex-row items-center gap-4 ${
+                    menuOpen ? "block" : "hidden"
+                } md:flex`}
+            >
+                <div className="md:hidden w-full border-t border-gray-300 my-2" />
+                <div className="text-center md:text-left">Home</div>
+                <div className="text-center md:text-left">Contact</div>
+                <div className="text-center md:text-left">About</div>
+                <div className="text-center md:text-left">Signup</div>
             </div>
         </div>
     );

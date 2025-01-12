@@ -29,18 +29,21 @@ export default function RootLayout({
             <body
                 className={`${geistSans.variable} ${geistMono.variable} antialiased`}
             >
-                <div className="bg-black text-white flex  py-4">
-                    <div className="grow flex justify-center">
-                        Summer Stale for All swim ANd Free Express Delivery-OFF
-                        50% <span className="underline ms-3"> Shop now</span>
+                <div className="bg-black text-white flex flex-wrap items-center py-4 px-4">
+                    {/* Announcement Section */}
+                    <div className="flex-1 text-center text-sm md:text-base lg:text-lg">
+                        Summer Sale for All Swim and Free Express Delivery - OFF
+                        50%
+                        <span className="underline ms-3">Shop now</span>
                     </div>
-                    {
-                        <div className="grow-0 flex justify-start me-20">
-                            English{" "}
-                            <FaChevronDown className="ps-2 pt-2 size-lg" />
-                        </div>
-                    }
+
+                    {/* Language Selector */}
+                    {/* <div className="flex items-center justify-center md:justify-end mt-2 md:mt-0 text-sm md:text-base">
+                        English
+                        <FaChevronDown className="ml-2 text-xs md:text-sm" />
+                    </div> */}
                 </div>
+
                 <NavBar />
 
                 <hr className="mt-4" />
